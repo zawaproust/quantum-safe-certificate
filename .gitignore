@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+out/
+cache/
+
+# Secrets — NEVER commit. The deployer mnemonic (testnet-only) lives here.
+.deployer.json
+.env
+
+# Foundry lib (forge-std) — reinstall with `forge install`.
+lib/
+
+# OS / editor
+.DS_Store
+*.log

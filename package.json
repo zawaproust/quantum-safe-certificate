@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@cosmjs/stargate": "^0.39.0",
     "@qorechain/evm": "^0.12.0",
     "@qorechain/qorex-rainbowkit": "^0.1.0",
     "@qorechain/sdk": "^0.12.0",

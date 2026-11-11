@@ -1,60 +1,94 @@
-# QoreChain viem + wagmi starter
+# Quantum-Safe Certificate
 
-A Vite + React dApp for the QoreChain EVM built on [wagmi](https://wagmi.sh)
-and [RainbowKit](https://rainbowkit.com), with the QoreX wallet
-(`@qorechain/qorex-rainbowkit`) and the chain definitions from
-`@qorechain/evm`.
+Check your account's post-quantum status on QoreChain testnet and mint a
+certificate proving it is quantum-safe — a registered ML-DSA-87 key plus a
+hybrid-signed (secp256k1 + ML-DSA-87) transaction.
 
-It connects a wallet, shows the latest block, the account's QOR balance and its
-EVM authorisation window, and sends a zero-value transaction to itself so you
-can see how the chain answers.
+Built for the QoreChain **"Build Before Q-Day" Developer Fest**
+([build.qorechain.io](https://build.qorechain.io)), **Quantum Pass** track.
 
-## Run
+## What it does
+
+1. **Connect** your QoreX wallet (or any injected EVM wallet) on the QoreChain
+   Diana testnet (EVM chain ID 9800).
+2. **Check** your post-quantum status: the dApp reads whether your account holds
+   a registered ML-DSA-87 (Dilithium-5) key, and whether an EVM authorisation
+   window is open.
+3. **Mint** your one Quantum-Safe Certificate — a `QuantumSafeCertificate`
+   contract call that records your address, the issue time, and an attestation
+   string on-chain, with the transaction hash and an explorer link.
+
+## How it meets the Quantum Pass requirements
+
+| Requirement | How this project meets it |
+|---|---|
+| Built with `create-qorechain-dapp` | Scaffolded with `npx create-qorechain-dapp --template viem-wagmi --network testnet` |
+| Connect QoreX | RainbowKit with the QoreX wallet first (`src/wagmi.ts`) |
+| Deploy on testnet | `QuantumSafeCertificate` deployed to `qorechain-diana` (EVM 9800) — see `deployed.json` |
+| One hybrid-signed transaction | `scripts/attest.mjs` sends a native-lane transfer signed hybrid (secp256k1 + ML-DSA-87); the setup also opens the EVM window with a hybrid-signed `MsgOpenEVMWindow` — see `attestation.json` |
+
+## Run it
 
 ```sh
-pnpm install
-pnpm dev        # http://localhost:5173
-pnpm build      # type-check and build for production
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # typecheck + production build
 ```
 
-## Networks
+Set the deployed contract address first (written by `scripts/deploy.mjs`):
 
-`src/wagmi.ts` lists both QoreChain EVM chains, testnet first:
+```sh
+# .env
+VITE_CERTIFICATE_ADDRESS=0x...
+```
 
-| Chain | Id | RPC |
-| --- | --- | --- |
-| `qorechainTestnet` | 9800 | `https://evm-testnet.qore.host` |
-| `qorechain` | 9801 | `https://evm.qore.host` |
+## On-chain pieces (testnet `qorechain-diana`, EVM 9800)
 
-## Wallets
+> Status: the contract is written and tested, the deploy scripts are ready, and
+> the deployer account is created — but the account is **unfunded** (the faucet
+> needs a dashboard sign-in; see BUILD_NOTES.md). The addresses below are filled
+> in once the deploy runs.
 
-- **QoreX** (`qorexWallet`): found through EIP-6963. It answers
-  `eth_chainId`, `eth_accounts`, `eth_requestAccounts` and
-  `wallet_switchEthereumChain` today; its EVM signing methods are not
-  available yet, so use it to connect and read.
-- **Injected** (`injectedWallet`): any browser wallet that exposes an EIP-1193
-  provider, for signing.
+- Deployer account (Native): `qor1k9lwgypx4uk0fyrzq5x5z3mscw2nugx4n8wgwl`
+- Deployer account (EVM): `0xB17EE41026AF2Cf49062050D414770C3953E20D5`
+- Certificate contract: *(pending deploy — see `deployed.json` after deploy)*
+- Hybrid-signed attestation tx: *(pending — see `attestation.json` after deploy)*
+- Explorer: https://explore.qore.network (toggle to Testnet)
 
-Neither uses WalletConnect. To add a WalletConnect-based wallet, set
-`VITE_WALLETCONNECT_PROJECT_ID` in `.env`.
+## Chain scripts
 
-## Sending: the EVM authorisation window
+All in `scripts/` (Node 20+, testnet only, no real funds):
 
-QoreChain admits an EVM transaction only when the sender has a registered
-**ML-DSA-87** key and a live **EVM authorisation window**. Both are set up on
-QoreChain's native lane with the post-quantum key, so a browser wallet's
-secp256k1 key can never authorise spending on its own.
+```sh
+node scripts/account.mjs        # (re)print the deployer addresses
+node scripts/pqc-status.mjs     # balance + PQC status + EVM window (read-only)
+node scripts/setup-chain.mjs    # register ML-DSA-87 key + open EVM window (needs funds)
+node scripts/deploy.mjs         # deploy QuantumSafeCertificate (needs window)
+node scripts/attest.mjs         # hybrid-signed attestation tx (needs registered key)
+```
 
-The app reads the window with `evmWindowStatus` from `@qorechain/evm`. When a
-send is refused, `classifyEvmWindowRejection(error)` tells you why:
+## Contract
 
-| Result | Meaning |
-| --- | --- |
-| `no-pqc-key` | the account has no ML-DSA-87 key registered |
-| `no-window` | no window is open |
-| `exhausted` | the window ran out of blocks, transactions or value |
-| `invalid` | the window parameters were refused |
+`contracts/QuantumSafeCertificate.sol` (Solidity 0.8.20, MIT):
 
-Open the window from a wallet or tool that holds the account's post-quantum
-key (for example the `pnpm window open` helper in the `foundry` and `hardhat`
-templates), then send. Opening a window advances the account's nonce.
+- `mint(string attestation)` — one certificate per address, emits `CertificateMinted`.
+- `certificateOf(address)` / `hasCertificate(address)` — reads.
+- `totalMinted` — counter.
+
+Tests (Foundry, 4/4 pass):
+
+```sh
+forge test
+```
+
+## Credits
+
+- Scaffold and SDKs: [QoreChain](https://docs.qorechain.io) —
+  `create-qorechain-dapp`, `@qorechain/sdk`, `@qorechain/evm`,
+  `@qorechain/qorex-rainbowkit` (see `package.json`).
+- The certificate contract and the dApp UI are original work built during the
+  fest (see `AI_USAGE.md` for how the AI agent built them).
+
+## License
+
+MIT — see `LICENSE`.
