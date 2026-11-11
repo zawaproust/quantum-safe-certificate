@@ -97,3 +97,24 @@ Date: 2026-11-12. Hackathon deadline: 2 Dec 2026 23:59 UTC.
 - `npm run build` passes with the real contract address in .env.
 - Remaining: register on build.qorechain.io, demo video (<=3 min), submit
   before 2 Dec 2026 23:59 UTC.
+
+## Update 2026-11-12 ~06:30 WIB — REGISTERED ✅ + CERTIFICATE MINTED ✅
+- Registration COMPLETE (4/4) on build.qorechain.io: GitHub zawaproust,
+  details Quantum Pass / Solo, X @abdul22098 (verification post
+  https://x.com/abdul22098/status/2120658719516319861), QoreX connected.
+- QoreX proof tx: 9D726290647206C83487CA638BCFC2FC067AC303EE47DC0AED7596CD7880CC5D
+  (native bankSend, 0.000001 QOR, memo bbqd-link:xvT9n2d6qYrV, block 9919203,
+  code 0) — see scripts/proof.mjs + proof.json.
+- Certificate MINTED: tx 0x27b80ac557c1d70760f0d9db01ce265f06288412575ba4588396099f28aad12a,
+  block 9919234, status success; holder 0xB17EE41026AF2Cf49062050D414770C3953E20D5,
+  attestation "quantum-safe" — see scripts/mint.mjs + mint.json.
+  Note: the mint used a plain viem writeContract inside the live EVM window
+  (19 txs left) — regular EVM txs ARE accepted within a window.
+- Explorer caveat: explore.qore.network indexes native-lane txs but NOT EVM
+  txs (deploy + mint show "tx not found"); EVM txs verified via EVM RPC
+  receipts. The explorer defaults to Mainnet — toggle to Testnet.
+- Demo video DONE: 62s, narration + dapp + explorer footage, at
+  ~/workspace/qorechain/video/demo-video.mp4 (not in this repo).
+- Remaining: submit the project on build.qorechain.io — the platform says
+  "Project submission opens in the next phase", so it is NOT open yet.
+  Deadline 2 Dec 2026 23:59 UTC. Check again when the phase opens.

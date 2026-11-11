@@ -1,0 +1,11 @@
+{
+  "network": "qorechain-diana",
+  "chainId": "qorechain-diana",
+  "type": "QoreX registration proof (hybrid-signed native bankSend)",
+  "from": "qor1k9lwgypx4uk0fyrzq5x5z3mscw2nugx4n8wgwl",
+  "to": "qor1k9lwgypx4uk0fyrzq5x5z3mscw2nugx4n8wgwl",
+  "amount": "0.000001 QOR",
+  "memo": "bbqd-link:xvT9n2d6qYrV",
+  "txHash": "9D726290647206C83487CA638BCFC2FC067AC303EE47DC0AED7596CD7880CC5D",
+  "explorer": "https://explore.qore.network/tx/9D726290647206C83487CA638BCFC2FC067AC303EE47DC0AED7596CD7880CC5D"
+}

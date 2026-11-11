@@ -1,0 +1,15 @@
+{
+  "network": "qorechain-diana",
+  "chainId": 9800,
+  "contract": "0x635ce52a842f305e862be82aa51f9de13f7c061c",
+  "minter": "0xB17EE41026AF2Cf49062050D414770C3953E20D5",
+  "attestation": "quantum-safe",
+  "mintTx": "0x27b80ac557c1d70760f0d9db01ce265f06288412575ba4588396099f28aad12a",
+  "block": "9919234",
+  "explorer": "https://explore.qore.network/tx/0x27b80ac557c1d70760f0d9db01ce265f06288412575ba4588396099f28aad12a",
+  "certificate": {
+    "holder": "0xB17EE41026AF2Cf49062050D414770C3953E20D5",
+    "issuedAt": "1794439851",
+    "attestation": "quantum-safe"
+  }
+}

@@ -48,10 +48,12 @@ VITE_CERTIFICATE_ADDRESS=0x...
 
 - Deployer account (Native): `qor1k9lwgypx4uk0fyrzq5x5z3mscw2nugx4n8wgwl`
 - Deployer account (EVM): `0xB17EE41026AF2Cf49062050D414770C3953E20D5`
-- Certificate contract: [`0x635ce52a842f305e862be82aa51f9de13f7c061c`](https://explore.qore.network/address/0x635ce52a842f305e862be82aa51f9de13f7c061c) (deploy tx [`0x0061b1986b582ed36846f785167df78cd0c40765f4e2024c10e4bd6edbcd12b6`](https://explore.qore.network/tx/0x0061b1986b582ed36846f785167df78cd0c40765f4e2024c10e4bd6edbcd12b6), block 9918262) — see `deployed.json`
+- Certificate contract: [`0x635ce52a842f305e862be82aa51f9de13f7c061c`](https://explore.qore.network/address/0x635ce52a842f305e862be82aa51f9de13f7c061c) (deploy tx [`0x0061b1986b582ed36846f785167df78cd0c40765f4e2024c10e4bd6edbcd12b6`](https://explore.qore.network/tx/0061b1986b582ed36846f785167df78cd0c40765f4e2024c10e4bd6edbcd12b6), block 9918262) — see `deployed.json`
 - ML-DSA-87 key registration tx: [`66E37A636F0B4ACB6251765D9B151D185F691E35D840B546BC0C42EC785DD686`](https://explore.qore.network/tx/66E37A636F0B4ACB6251765D9B151D185F691E35D840B546BC0C42EC785DD686)
 - EVM window open tx: [`E68A81501FFE9430735E9E31266DE4670605E0CCB759B85AAFB04691DD92D5E5`](https://explore.qore.network/tx/E68A81501FFE9430735E9E31266DE4670605E0CCB759B85AAFB04691DD92D5E5)
 - Hybrid-signed attestation tx: [`A648DF40D730887F2467343DC481DBAB4A110F95CE1BF553B6FAE50B4B8A87C2`](https://explore.qore.network/tx/A648DF40D730887F2467343DC481DBAB4A110F95CE1BF553B6FAE50B4B8A87C2) — see `attestation.json`
+- Certificate mint tx: [`0x27b80ac557c1d70760f0d9db01ce265f06288412575ba4588396099f28aad12a`](https://explore.qore.network/tx/27b80ac557c1d70760f0d9db01ce265f06288412575ba4588396099f28aad12a) (block 9919234, holder `0xB17EE41026AF2Cf49062050D414770C3953E20D5`, attestation `quantum-safe`) — see `mint.json`. Note: the QoreChain explorer indexes native-lane txs; EVM txs are verified via the EVM RPC receipt.
+- Registration proof tx: [`9D726290647206C83487CA638BCFC2FC067AC303EE47DC0AED7596CD7880CC5D`](https://explore.qore.network/tx/9D726290647206C83487CA638BCFC2FC067AC303EE47DC0AED7596CD7880CC5D) (block 9919203, 0.000001 QOR, memo `bbqd-link:xvT9n2d6qYrV`) — see `proof.json`
 - Explorer: https://explore.qore.network (toggle to Testnet)
 
 ## Chain scripts
