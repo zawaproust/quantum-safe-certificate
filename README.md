@@ -44,15 +44,14 @@ VITE_CERTIFICATE_ADDRESS=0x...
 
 ## On-chain pieces (testnet `qorechain-diana`, EVM 9800)
 
-> Status: the contract is written and tested, the deploy scripts are ready, and
-> the deployer account is created — but the account is **unfunded** (the faucet
-> needs a dashboard sign-in; see BUILD_NOTES.md). The addresses below are filled
-> in once the deploy runs.
+> Status: **live on testnet** — deployed and verified 2026-11-12.
 
 - Deployer account (Native): `qor1k9lwgypx4uk0fyrzq5x5z3mscw2nugx4n8wgwl`
 - Deployer account (EVM): `0xB17EE41026AF2Cf49062050D414770C3953E20D5`
-- Certificate contract: *(pending deploy — see `deployed.json` after deploy)*
-- Hybrid-signed attestation tx: *(pending — see `attestation.json` after deploy)*
+- Certificate contract: [`0x635ce52a842f305e862be82aa51f9de13f7c061c`](https://explore.qore.network/address/0x635ce52a842f305e862be82aa51f9de13f7c061c) (deploy tx [`0x0061b1986b582ed36846f785167df78cd0c40765f4e2024c10e4bd6edbcd12b6`](https://explore.qore.network/tx/0x0061b1986b582ed36846f785167df78cd0c40765f4e2024c10e4bd6edbcd12b6), block 9918262) — see `deployed.json`
+- ML-DSA-87 key registration tx: [`66E37A636F0B4ACB6251765D9B151D185F691E35D840B546BC0C42EC785DD686`](https://explore.qore.network/tx/66E37A636F0B4ACB6251765D9B151D185F691E35D840B546BC0C42EC785DD686)
+- EVM window open tx: [`E68A81501FFE9430735E9E31266DE4670605E0CCB759B85AAFB04691DD92D5E5`](https://explore.qore.network/tx/E68A81501FFE9430735E9E31266DE4670605E0CCB759B85AAFB04691DD92D5E5)
+- Hybrid-signed attestation tx: [`A648DF40D730887F2467343DC481DBAB4A110F95CE1BF553B6FAE50B4B8A87C2`](https://explore.qore.network/tx/A648DF40D730887F2467343DC481DBAB4A110F95CE1BF553B6FAE50B4B8A87C2) — see `attestation.json`
 - Explorer: https://explore.qore.network (toggle to Testnet)
 
 ## Chain scripts

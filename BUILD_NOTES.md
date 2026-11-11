@@ -68,3 +68,32 @@ Date: 2026-11-12. Hackathon deadline: 2 Dec 2026 23:59 UTC.
   setup opens a general window (7200 blocks, 20 txs, 1000 QOR).
 - Opening a window advances the account nonce — viem reads the nonce fresh at
   deploy time, so deploy AFTER opening the window.
+
+## Update 2026-11-12 ~06:00 WIB — faucet sign-in 403 on user's phone
+- User tried to sign in to dashboard.qorechain.io/faucet from their phone and got
+  "403 Forbidden — You don't have permission to access this resource" on the
+  sign-in step (screenshot).
+- Verified from the VM: dashboard root returns 200, faucet page 307 (redirect to
+  sign-in, normal), api-testnet 200. So the dashboard is NOT down — the 403 is
+  specific to the user's connection (likely WAF/IP block on their network).
+- Docs confirm the dashboard faucet is the ONLY source of test QOR (sign-in
+  required, no API, no alternate faucet).
+- Next tries for the user: switch network (WiFi <-> mobile data), different
+  browser / desktop mode, retry later, or a laptop/PC.
+
+## Update 2026-11-12 ~06:07 WIB — DEPLOYED ✅
+- Faucet claim SUCCEEDED via mobile data (the WiFi IP was the block): 100 QOR
+  + 1000 fUSD + 0.5 fETH + 0.02 fBTC. Faucet tx:
+  04F6421565EAD17C79CFF4CE99DDC8E36735F58A030D2E2FFECD9390B9DC2B54
+- PQC key registered: tx 66E37A636F0B4ACB6251765D9B151D185F691E35D840B546BC0C42EC785DD686
+- EVM window opened (7200 blocks / 20 txs / 1000 QOR):
+  tx E68A81501FFE9430735E9E31266DE4670605E0CCB759B85AAFB04691DD92D5E5
+- Contract DEPLOYED: 0x635ce52a842f305e862be82aa51f9de13f7c061c, block 9918262,
+  deploy tx 0x0061b1986b582ed36846f785167df78cd0c40765f4e2024c10e4bd6edbcd12b6
+  (verified on-chain via eth_getCode; balance after deploy 99.775 QOR).
+- Hybrid-signed attestation tx: A648DF40D730887F2467343DC481DBAB4A110F95CE1BF553B6FAE50B4B8A87C2
+- Bug fixed: deploy.mjs double-`0x` bytecode prefix (Foundry artifact already
+  includes `0x`); fixed with a startsWith guard.
+- `npm run build` passes with the real contract address in .env.
+- Remaining: register on build.qorechain.io, demo video (<=3 min), submit
+  before 2 Dec 2026 23:59 UTC.

@@ -1,0 +1,11 @@
+{
+  "network": "qorechain-diana",
+  "chainId": 9800,
+  "contract": "QuantumSafeCertificate",
+  "address": "0x635ce52a842f305e862be82aa51f9de13f7c061c",
+  "deployTx": "0x0061b1986b582ed36846f785167df78cd0c40765f4e2024c10e4bd6edbcd12b6",
+  "block": "9918262",
+  "deployer": "0xB17EE41026AF2Cf49062050D414770C3953E20D5",
+  "explorer": "https://explore.qore.network/tx/0x0061b1986b582ed36846f785167df78cd0c40765f4e2024c10e4bd6edbcd12b6",
+  "contractExplorer": "https://explore.qore.network/address/0x635ce52a842f305e862be82aa51f9de13f7c061c"
+}

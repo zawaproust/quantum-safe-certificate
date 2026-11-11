@@ -13,7 +13,9 @@ const artifact = JSON.parse(
   readFileSync(new URL("../out/QuantumSafeCertificate.sol/QuantumSafeCertificate.json", import.meta.url), "utf8"),
 );
 const CERTIFICATE_ABI = artifact.abi;
-const BYTECODE = `0x${artifact.bytecode.object}`;
+const BYTECODE = artifact.bytecode.object.startsWith("0x")
+  ? artifact.bytecode.object
+  : `0x${artifact.bytecode.object}`;
 
 const { mnemonic } = JSON.parse(readFileSync(new URL("../.deployer.json", import.meta.url), "utf8"));
 // Re-derive the unified account's private key from the mnemonic (eth path m/44'/60'/0'/0/0).

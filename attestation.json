@@ -1,0 +1,12 @@
+[
+  {
+    "network": "qorechain-diana",
+    "chainId": "qorechain-diana",
+    "type": "hybrid-signed native bankSend (secp256k1 + ML-DSA-87)",
+    "from": "qor1k9lwgypx4uk0fyrzq5x5z3mscw2nugx4n8wgwl",
+    "to": "qor1k9lwgypx4uk0fyrzq5x5z3mscw2nugx4n8wgwl",
+    "amount": "0.01 QOR",
+    "txHash": "A648DF40D730887F2467343DC481DBAB4A110F95CE1BF553B6FAE50B4B8A87C2",
+    "explorer": "https://explore.qore.network/tx/A648DF40D730887F2467343DC481DBAB4A110F95CE1BF553B6FAE50B4B8A87C2"
+  }
+]
